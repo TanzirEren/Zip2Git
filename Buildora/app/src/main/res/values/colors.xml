@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light -->
+    <color name="l_bg">#FAF8F4</color>
+    <color name="l_surface">#FFFFFF</color>
+    <color name="l_surface2">#F1EFEA</color>
+    <color name="l_text">#1B1C1F</color>
+    <color name="l_text_dim">#6C6B70</color>
+    <color name="l_accent">#3F7EB8</color>
+    <color name="l_divider">#E3E0D9</color>
+    <color name="l_glass">#E8FAF8F4</color>
+    <color name="l_error">#D64545</color>
+    <!-- Dark -->
+    <color name="d_bg">#111215</color>
+    <color name="d_surface">#1B1C21</color>
+    <color name="d_surface2">#25262C</color>
+    <color name="d_text">#ECEAE4</color>
+    <color name="d_text_dim">#9B9AA1</color>
+    <color name="d_accent">#7DB1E0</color>
+    <color name="d_divider">#2E2F36</color>
+    <color name="d_glass">#E61B1C21</color>
+    <color name="d_error">#FF6B6B</color>
+    <color name="on_accent">#FFFFFF</color>
+    <color name="logo_lime">#E0E1A6</color>
+</resources>

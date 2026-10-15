@@ -1,0 +1,63 @@
+name: Build Buildora APK
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Prepare Android SDK (preinstalled on the runner)
+        run: |
+          export ANDROID_SDK_ROOT="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> "$GITHUB_ENV"
+          SDKM="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" "platforms;android-34" "build-tools;34.0.0" > /dev/null || true
+          ls "$ANDROID_SDK_ROOT/platforms"
+          test -f "$ANDROID_SDK_ROOT/platforms/android-34/android.jar"
+
+      - name: Bundle the on-device toolchain (android.jar + aapt2)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AAPT2_ARM64_URL: ${{ vars.AAPT2_ARM64_URL }}
+          AAPT2_ARM_URL: ${{ vars.AAPT2_ARM_URL }}
+          AAPT2_X86_64_URL: ${{ vars.AAPT2_X86_64_URL }}
+          AAPT2_REPOS: ${{ vars.AAPT2_REPOS }}
+        run: python3 scripts/fetch_toolchain.py
+
+      - name: Show bundled tools
+        run: ls -la app/src/main/assets/toolchain
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.4'
+
+      - name: Build debug APK
+        run: gradle :app:assembleDebug --stacktrace --no-daemon
+
+      - name: Rename APK
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/debug/app-debug.apk dist/Buildora.apk
+          ls -la dist
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Buildora-APK
+          path: dist/Buildora.apk
+          if-no-files-found: error

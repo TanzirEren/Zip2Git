@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ideRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/bBg"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:id="@+id/mainColumn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- top bar : small icons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <ImageButton
+                android:id="@+id/ibMenu"
+                style="@style/BIconBtn"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:contentDescription="Files"
+                android:src="@drawable/ic_menu" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/BText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/ibRun"
+                style="@style/BIconBtn"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:contentDescription="Run"
+                android:src="@drawable/ic_play"
+                android:tint="?attr/bAccent" />
+
+            <ImageButton
+                android:id="@+id/ibUndo"
+                style="@style/BIconBtn"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:contentDescription="Undo"
+                android:src="@drawable/ic_undo" />
+
+            <ImageButton
+                android:id="@+id/ibRedo"
+                style="@style/BIconBtn"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:contentDescription="Redo"
+                android:src="@drawable/ic_redo" />
+
+            <ImageButton
+                android:id="@+id/ibSave"
+                style="@style/BIconBtn"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:contentDescription="Save"
+                android:src="@drawable/ic_save" />
+
+            <ImageButton
+                android:id="@+id/ibMore"
+                style="@style/BIconBtn"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:contentDescription="More"
+                android:src="@drawable/ic_more" />
+        </LinearLayout>
+
+        <!-- open files, one per one in a single line -->
+        <HorizontalScrollView
+            android:id="@+id/tabsScroll"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/tabsBar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp" />
+        </HorizontalScrollView>
+
+        <!-- find / replace -->
+        <LinearLayout
+            android:id="@+id/findBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/bSurface"
+            android:orientation="vertical"
+            android:padding="6dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etFind"
+                    style="@style/BText"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input"
+                    android:hint="Find"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvCase"
+                    style="@style/BText"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/bg_chip"
+                    android:gravity="center"
+                    android:text="Aa"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvRegex"
+                    style="@style/BText"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/bg_chip"
+                    android:gravity="center"
+                    android:text=".*"
+                    android:textSize="13sp" />
+
+                <ImageButton
+                    android:id="@+id/ibFindPrev"
+                    style="@style/BIconBtn"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:contentDescription="Previous"
+                    android:rotation="-90"
+                    android:src="@drawable/ic_chevron_right" />
+
+                <ImageButton
+                    android:id="@+id/ibFindNext"
+                    style="@style/BIconBtn"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:contentDescription="Next"
+                    android:rotation="90"
+                    android:src="@drawable/ic_chevron_right" />
+
+                <ImageButton
+                    android:id="@+id/ibFindClose"
+                    style="@style/BIconBtn"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:contentDescription="Close"
+                    android:src="@drawable/ic_close" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etReplace"
+                    style="@style/BText"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input"
+                    android:hint="Replace with"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/btnReplace"
+                    style="@style/BText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/bg_chip"
+                    android:gravity="center"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="Replace"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btnReplaceAll"
+                    style="@style/BText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/bg_chip"
+                    android:gravity="center"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="All"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/editorHost"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.tenix.buildora.editor.CodeEditText
+                android:id="@+id/editor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/ivPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="preview"
+                android:padding="16dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/emptyEditor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:alpha="0.3"
+                    android:contentDescription="code"
+                    android:src="@drawable/ic_code"
+                    android:tint="?attr/bTextDim" />
+
+                <TextView
+                    style="@style/BText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Open a file from the explorer"
+                    android:textColor="?attr/bTextDim"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            style="@style/BText"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:background="?attr/bSurface"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="?attr/bTextDim"
+            android:textSize="10sp" />
+
+        <HorizontalScrollView
+            android:id="@+id/symbolScroll"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="?attr/bSurface"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/symbolBar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp" />
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:visibility="gone" />
+
+    <!-- glass file explorer -->
+    <LinearLayout
+        android:id="@+id/explorer"
+        android:layout_width="310dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_glass"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingEnd="6dp">
+
+            <TextView
+                android:id="@+id/tvExplorerTitle"
+                style="@style/BText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:text="Files"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/ibNewItem"
+                style="@style/BIconBtn"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="New file or folder"
+                android:src="@drawable/ic_add" />
+
+            <ImageButton
+                android:id="@+id/ibImportItem"
+                style="@style/BIconBtn"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="Import file or folder"
+                android:src="@drawable/ic_import" />
+
+            <ImageButton
+                android:id="@+id/ibRefreshTree"
+                style="@style/BIconBtn"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="Refresh"
+                android:src="@drawable/ic_refresh" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/bDivider" />
+
+        <ListView
+            android:id="@+id/lvTree"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@null"
+            android:scrollbars="none" />
+    </LinearLayout>
+</FrameLayout>

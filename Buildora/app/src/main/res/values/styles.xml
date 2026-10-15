@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppLight" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="bBg">@color/l_bg</item>
+        <item name="bSurface">@color/l_surface</item>
+        <item name="bSurface2">@color/l_surface2</item>
+        <item name="bText">@color/l_text</item>
+        <item name="bTextDim">@color/l_text_dim</item>
+        <item name="bAccent">@color/l_accent</item>
+        <item name="bOnAccent">@color/on_accent</item>
+        <item name="bDivider">@color/l_divider</item>
+        <item name="bGlass">@color/l_glass</item>
+        <item name="bError">@color/l_error</item>
+        <item name="android:windowBackground">@color/l_bg</item>
+        <item name="android:statusBarColor">@color/l_bg</item>
+        <item name="android:navigationBarColor">@color/l_bg</item>
+        <item name="android:colorAccent">@color/l_accent</item>
+        <item name="android:colorPrimary">@color/l_bg</item>
+        <item name="android:textColorPrimary">@color/l_text</item>
+        <item name="android:textColorSecondary">@color/l_text_dim</item>
+        <item name="android:textColorHint">@color/l_text_dim</item>
+        <item name="android:alertDialogTheme">@style/BDialogLight</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="AppDark" parent="android:Theme.Material.NoActionBar">
+        <item name="bBg">@color/d_bg</item>
+        <item name="bSurface">@color/d_surface</item>
+        <item name="bSurface2">@color/d_surface2</item>
+        <item name="bText">@color/d_text</item>
+        <item name="bTextDim">@color/d_text_dim</item>
+        <item name="bAccent">@color/d_accent</item>
+        <item name="bOnAccent">@color/d_bg</item>
+        <item name="bDivider">@color/d_divider</item>
+        <item name="bGlass">@color/d_glass</item>
+        <item name="bError">@color/d_error</item>
+        <item name="android:windowBackground">@color/d_bg</item>
+        <item name="android:statusBarColor">@color/d_bg</item>
+        <item name="android:navigationBarColor">@color/d_bg</item>
+        <item name="android:colorAccent">@color/d_accent</item>
+        <item name="android:colorPrimary">@color/d_bg</item>
+        <item name="android:textColorPrimary">@color/d_text</item>
+        <item name="android:textColorSecondary">@color/d_text_dim</item>
+        <item name="android:textColorHint">@color/d_text_dim</item>
+        <item name="android:alertDialogTheme">@style/BDialogDark</item>
+    </style>
+
+    <!-- Launch theme (before the user theme is applied) -->
+    <style name="AppTheme" parent="AppLight" />
+
+    <style name="BDialogLight" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="bBg">@color/l_bg</item>
+        <item name="bSurface">@color/l_surface</item>
+        <item name="bSurface2">@color/l_surface2</item>
+        <item name="bText">@color/l_text</item>
+        <item name="bTextDim">@color/l_text_dim</item>
+        <item name="bAccent">@color/l_accent</item>
+        <item name="bOnAccent">@color/on_accent</item>
+        <item name="bDivider">@color/l_divider</item>
+        <item name="bGlass">@color/l_glass</item>
+        <item name="bError">@color/l_error</item>
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
+        <item name="android:colorAccent">@color/l_accent</item>
+        <item name="android:textColorPrimary">@color/l_text</item>
+        <item name="android:textColorSecondary">@color/l_text_dim</item>
+        <item name="android:textColorHint">@color/l_text_dim</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+
+    <style name="BDialogDark" parent="android:Theme.Material.Dialog.Alert">
+        <item name="bBg">@color/d_bg</item>
+        <item name="bSurface">@color/d_surface</item>
+        <item name="bSurface2">@color/d_surface2</item>
+        <item name="bText">@color/d_text</item>
+        <item name="bTextDim">@color/d_text_dim</item>
+        <item name="bAccent">@color/d_accent</item>
+        <item name="bOnAccent">@color/d_bg</item>
+        <item name="bDivider">@color/d_divider</item>
+        <item name="bGlass">@color/d_glass</item>
+        <item name="bError">@color/d_error</item>
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
+        <item name="android:colorAccent">@color/d_accent</item>
+        <item name="android:textColorPrimary">@color/d_text</item>
+        <item name="android:textColorSecondary">@color/d_text_dim</item>
+        <item name="android:textColorHint">@color/d_text_dim</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+
+    <style name="BText">
+        <item name="android:textColor">?attr/bText</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="BTitle" parent="BText">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="BIconBtn">
+        <item name="android:background">@drawable/bg_ripple_round</item>
+        <item name="android:tint">?attr/bText</item>
+        <item name="android:scaleType">center</item>
+    </style>
+</resources>

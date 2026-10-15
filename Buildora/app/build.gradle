@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.tenix.buildora'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.tenix.buildora'
+        minSdk 26
+        // targetSdk 28 on purpose: allows executing the bundled aapt2 binary from app storage
+        // and gives legacy (java.io.File) access to /storage/emulated/0/Buildora.
+        targetSdk 28
+        versionCode 2
+        versionName '2.0.0'
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    packaging {
+        resources {
+            excludes += [
+                'META-INF/DEPENDENCIES', 'META-INF/LICENSE*', 'META-INF/NOTICE*',
+                'META-INF/*.kotlin_module', 'META-INF/AL2.0', 'META-INF/LGPL2.1',
+                'META-INF/INDEX.LIST', 'META-INF/MANIFEST.MF', 'META-INF/*.SF',
+                'META-INF/*.DSA', 'META-INF/*.RSA', 'about.html', 'plugin.properties',
+                'META-INF/eclipse.inf', 'META-INF/ECLIPSE_.*', 'META-INF/versions/**',
+                'META-INF/maven/**', '**/*.java', '.api_description', 'schema/**',
+                'META-INF/services/javax.annotation.processing.Processor'
+            ]
+            pickFirsts += ['**/*.properties', 'META-INF/services/**', 'org/eclipse/**', 'about_files/**']
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.12.0'
+
+    // ---- on-device build pipeline ----
+    implementation 'org.eclipse.jdt:ecj:3.26.0'                    // Java compiler (ECJ)
+    implementation 'com.android.tools:r8:8.2.42'                   // D8 dexer
+    implementation 'com.android.tools.build:apksig:8.2.2'          // APK v1/v2/v3 signer
+
+    // ---- git (clone / pull / push / commit) ----
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:5.13.0.202109080827-r'
+    implementation 'org.slf4j:slf4j-nop:1.7.36'
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+}

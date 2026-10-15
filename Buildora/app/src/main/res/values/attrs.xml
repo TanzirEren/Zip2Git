@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bBg" format="color" />
+    <attr name="bSurface" format="color" />
+    <attr name="bSurface2" format="color" />
+    <attr name="bText" format="color" />
+    <attr name="bTextDim" format="color" />
+    <attr name="bAccent" format="color" />
+    <attr name="bOnAccent" format="color" />
+    <attr name="bDivider" format="color" />
+    <attr name="bGlass" format="color" />
+    <attr name="bError" format="color" />
+</resources>
